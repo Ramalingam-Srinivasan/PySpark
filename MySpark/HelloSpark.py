@@ -21,7 +21,17 @@ if __name__ == "__main__":
     #conf_out = spark.sparkContext.getConf()
     #logger.info(conf_out)
 
+   # trasformers and actions
+
+    #trasnformations are lazy and actions are evaluated immediately
+
+    #read, write, collect, show - > actions
+    #where, select, filter, group by -> transformation
+
     survey_df = load_survey_df(spark,sys.argv[1])
-    survey_df.show()
+    filtered_survey = survey_df.where("Age < 40").select("Age","Gender","Country","state")
+    grouped_survey = filtered_survey.groupBy("Country")
+    count_survey = grouped_survey.count()
+    count_survey.show()
     logger.info("Finished HelloSpark")
     #spark.stop()
