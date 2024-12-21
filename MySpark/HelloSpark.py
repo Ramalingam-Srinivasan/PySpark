@@ -13,9 +13,7 @@ if __name__ == "__main__":
 
     logger = Log4j(spark)
 
-    if len(sys.argv)!=2:
-        logger.error("usage:hello spark <filename>")
-        sys.exit(-1)
+    5
 
     logger.info("Starting HelloSpark")
     #conf_out = spark.sparkContext.getConf()
