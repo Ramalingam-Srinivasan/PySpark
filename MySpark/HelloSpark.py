@@ -13,7 +13,6 @@ if __name__ == "__main__":
 
     logger = Log4j(spark)
 
-    5
 
     logger.info("Starting HelloSpark")
     #conf_out = spark.sparkContext.getConf()
