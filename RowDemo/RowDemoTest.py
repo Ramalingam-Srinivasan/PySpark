@@ -25,11 +25,13 @@ class RowDemoTestCase(TestCase):
         cls.my_df = cls.spark.createDataFrame(my_rdd, my_schema)
 
     def test_data_type(self):
+        #collect action method will connect with spark driver
         rows = to_date_df(self.my_df, "M/d/y", "EventDate").collect()
         for row in rows:
             self.assertIsInstance(row["EventDate"], date)
 
     def test_date_value(self):
+        #collect action method will connect with spark driver
         rows = to_date_df(self.my_df, "M/d/y", "EventDate").collect()
         for row in rows:
             self.assertEqual(row["EventDate"], date(2020, 4, 5))
