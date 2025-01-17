@@ -1,4 +1,5 @@
 from pyspark.sql import SparkSession
+from pyspark.sql.functions import broadcast
 
 from lib.logger import Log4j
 
@@ -18,7 +19,7 @@ if __name__ == "__main__":
     spark.conf.set("spark.sql.shuffle.partitions", 3)
 
     join_expr = flight_time_df1.id == flight_time_df2.id
-    join_df = flight_time_df1.join(flight_time_df2, join_expr, "inner")
+    join_df = flight_time_df1.join(broadcast(flight_time_df2), join_expr, "inner")
 
 
     #since join operations are transformation process untill action performed nothing will happen ,
